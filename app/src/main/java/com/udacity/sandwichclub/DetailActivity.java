@@ -21,6 +21,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         ImageView ingredientsIv = findViewById(R.id.image_iv);
+        
 
         Intent intent = getIntent();
         if (intent == null) {
