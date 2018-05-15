@@ -3,6 +3,7 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
+
 
     //declaration
     private Sandwich sandwich;
@@ -78,6 +80,7 @@ public class DetailActivity extends AppCompatActivity {
         for (String alsoKnownAs: sandwich.getAlsoKnownAs()) {
             alsoKnowAs_TextView.append(alsoKnownAs + "\n");
         }
+
 
         for (String ingredient: sandwich.getIngredients()) {
             ingredients_TextView.append(ingredient + "\n");

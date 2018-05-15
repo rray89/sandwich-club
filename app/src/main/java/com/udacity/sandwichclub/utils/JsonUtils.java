@@ -18,7 +18,7 @@ public class JsonUtils {
     public static Sandwich parseSandwichJson(String json) {
 
         //declaration & initialization
-        JSONObject sandwichObjects;
+        JSONObject sandwichObject;
         String mainName = null;
         String placeOfOrigin = null;
         String description = null;
@@ -28,19 +28,45 @@ public class JsonUtils {
 
         try {
 
-            sandwichObjects = new JSONObject(json);
-            JSONObject sandwichName = sandwichObjects.getJSONObject("name");
-            mainName = sandwichName.getString("mainName");
-            placeOfOrigin = sandwichObjects.getString("placeOfOrigin");
-            description = sandwichObjects.getString("description");
-            image = sandwichObjects.getString("image");
+            // JSON example:
+            // {
+            //  "name":
+            //  {
+            //    "mainName": "Ham and cheese sandwich",
+            //    "alsoKnownAs":[]
+            //  },
+            //
+            //    "placeOfOrigin":"",
+            //
+            //    "description":"A ham and cheese
+            //            sandwich is a common type of sandwich. It is made by putting cheese and sliced ham
+            //            between two slices of bread. The bread is sometimes buttered and/or toasted. Vegetables
+            //            like lettuce, tomato, onion or pickle slices can also be included. Various kinds of
+            //            mustard and mayonnaise are also
+            //            common.",
+            //
+            //    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Grilled_ham_and_cheese_014.JPG/800px-Grilled_ham_and_cheese_014.JPG",
+            //
+            //    "ingredients": ["Sliced bread","Cheese","Ham"]
+            //}
 
-            JSONArray jsonArray_alsoKnowAs = sandwichName.getJSONArray("alsoKnownAs");
+            sandwichObject = new JSONObject(json);
+
+            //"mainName" and "alsoKnownAs" are contained in "name" object
+            JSONObject name = sandwichObject.getJSONObject("name");
+            mainName = name.getString("mainName");
+
+            JSONArray jsonArray_alsoKnowAs = name.getJSONArray("alsoKnownAs");
             for (int i = 0; i < jsonArray_alsoKnowAs.length(); i++) {
                 alsoKnownAs.add(jsonArray_alsoKnowAs.getString(i));
             }
 
-            JSONArray jsonArray_ingredients = sandwichName.getJSONArray("ingredients");
+            //"name", "placeOfOrigin", "description", "image" and "ingredients" are contained in "sandwichObject" object
+            placeOfOrigin = sandwichObject.getString("placeOfOrigin");
+            description = sandwichObject.getString("description");
+            image = sandwichObject.getString("image");
+
+            JSONArray jsonArray_ingredients = sandwichObject.getJSONArray("ingredients");
             for (int i = 0; i < jsonArray_ingredients.length(); i++) {
                 ingredients.add(jsonArray_ingredients.getString(i));
             }
