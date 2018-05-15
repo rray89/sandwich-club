@@ -17,7 +17,7 @@ public class JsonUtils {
 
     public static Sandwich parseSandwichJson(String json) {
 
-        //initialization
+        //declaration & initialization
         JSONObject sandwichObjects;
         String mainName = null;
         String placeOfOrigin = null;
