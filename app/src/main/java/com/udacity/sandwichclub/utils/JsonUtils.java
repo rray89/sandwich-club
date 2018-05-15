@@ -13,7 +13,7 @@ import java.util.List;
 
 public class JsonUtils {
 
-    private static final String ERROR_TAG = JsonUtils.class.getSimpleName();
+    private static final String LOG_TAG = JsonUtils.class.getSimpleName();
 
     public static Sandwich parseSandwichJson(String json) {
 
@@ -46,7 +46,8 @@ public class JsonUtils {
             }
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            Log.e(LOG_TAG, "Error occurred while parsing. ", e);
         }
 
         return new Sandwich(mainName, alsoKnownAs, placeOfOrigin, description, image, ingredients);
