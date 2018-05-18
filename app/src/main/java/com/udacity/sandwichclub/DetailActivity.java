@@ -14,6 +14,8 @@ import com.udacity.sandwichclub.utils.JsonUtils;
 
 import java.util.List;
 
+import butterknife.BindView;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
@@ -22,23 +24,29 @@ public class DetailActivity extends AppCompatActivity {
 
     //declaration
     private Sandwich sandwich;
-    private TextView alsoKnowAs_TextView;
-    private TextView placeOfOrigin_TextView;
-    private TextView description_TextView;
-    private TextView ingredients_TextView;
+    //private TextView alsoKnowAs_TextView;
+    @BindView(R.id.tv_also_known_as) TextView alsoKnowAs_TextView;
+    @BindView(R.id.tv_place_of_origin) TextView placeOfOrigin_TextView;
+    @BindView(R.id.tv_description) TextView description_TextView;
+    @BindView(R.id.tv_ingredients) TextView ingredients_TextView;
+    @BindView(R.id.iv_image_of_sandwich) ImageView ingredientsIv;
+    //private TextView placeOfOrigin_TextView;
+    //private TextView description_TextView;
+    //private TextView ingredients_TextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        ImageView ingredientsIv = findViewById(R.id.iv_image_of_sandwich);
+        //ImageView ingredientsIv = findViewById(R.id.iv_image_of_sandwich);
 
         //initialization
-        alsoKnowAs_TextView = findViewById(R.id.tv_also_known_as);
-        placeOfOrigin_TextView = findViewById(R.id.tv_place_of_origin);
-        description_TextView = findViewById(R.id.tv_description);
-        ingredients_TextView = findViewById(R.id.tv_ingredients);
+        //alsoKnowAs_TextView = findViewById(R.id.tv_also_known_as);
+
+        //placeOfOrigin_TextView = findViewById(R.id.tv_place_of_origin);
+        //description_TextView = findViewById(R.id.tv_description);
+        //ingredients_TextView = findViewById(R.id.tv_ingredients);
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -80,7 +88,6 @@ public class DetailActivity extends AppCompatActivity {
         for (String alsoKnownAs: sandwich.getAlsoKnownAs()) {
             alsoKnowAs_TextView.append(alsoKnownAs + "\n");
         }
-
 
         for (String ingredient: sandwich.getIngredients()) {
             ingredients_TextView.append(ingredient + "\n");

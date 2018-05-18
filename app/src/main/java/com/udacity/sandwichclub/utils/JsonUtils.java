@@ -17,6 +17,7 @@ public class JsonUtils {
 
     public static Sandwich parseSandwichJson(String json) {
 
+
         //declaration & initialization
         JSONObject sandwichObject;
         String mainName = null;
@@ -54,21 +55,22 @@ public class JsonUtils {
 
             //"mainName" and "alsoKnownAs" are contained in "name" object
             JSONObject name = sandwichObject.getJSONObject("name");
-            mainName = name.getString("mainName");
+            mainName = name.optString("mainName");
 
             JSONArray jsonArray_alsoKnowAs = name.getJSONArray("alsoKnownAs");
+
             for (int i = 0; i < jsonArray_alsoKnowAs.length(); i++) {
-                alsoKnownAs.add(jsonArray_alsoKnowAs.getString(i));
+                alsoKnownAs.add(jsonArray_alsoKnowAs.optString(i));
             }
 
             //"name", "placeOfOrigin", "description", "image" and "ingredients" are contained in "sandwichObject" object
-            placeOfOrigin = sandwichObject.getString("placeOfOrigin");
-            description = sandwichObject.getString("description");
-            image = sandwichObject.getString("image");
+            placeOfOrigin = sandwichObject.optString("placeOfOrigin");
+            description = sandwichObject.optString("description");
+            image = sandwichObject.optString("image");
 
             JSONArray jsonArray_ingredients = sandwichObject.getJSONArray("ingredients");
             for (int i = 0; i < jsonArray_ingredients.length(); i++) {
-                ingredients.add(jsonArray_ingredients.getString(i));
+                ingredients.add(jsonArray_ingredients.optString(i));
             }
 
         } catch (JSONException e) {
